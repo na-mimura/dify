@@ -1,7 +1,9 @@
-FROM ghcr.io/langgenius/dify:latest
+FROM python:3.10-slim
 
-# Railway用ポート設定
-ENV PORT=3000
+WORKDIR /app
+COPY . /app
 
-# サービス起動
-CMD ["bash", "/app/start.sh"]
+RUN pip install --upgrade pip && \
+    pip install -r requirements.txt
+
+CMD ["bash", "./start.sh"]
